@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos · Aula 11</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <span class="logo">📦 Loja da Aula 11</span>
+    <nav>
+      <a href="index.html" class="active">Produtos</a>
+      <a href="formulario.html">Novo produto</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="topo">
+        <h1>Produtos</h1>
+        <a href="formulario.html" class="botao">+ Novo produto</a>
+      </div>
+
+      <form class="busca" id="form-busca">
+        <input id="campo-busca" placeholder="Buscar por nome..." />
+        <button type="submit" class="secundario">Buscar</button>
+      </form>
+
+      <!-- Cada "estado" da tela tem seu elemento; o JS mostra/esconde -->
+      <p class="info" id="carregando">Carregando...</p>
+      <p class="erro escondido" id="erro"></p>
+      <p class="info escondido" id="vazio">Nenhum produto encontrado.</p>
+
+      <table class="escondido" id="tabela">
+        <thead>
+          <tr>
+            <th>#</th><th>Nome</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-tabela"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- A ordem importa: api.js primeiro, porque lista.js usa as funções dele -->
+  <script src="js/api.js"></script>
+  <script src="js/lista.js"></script>
+</body>
+</html>

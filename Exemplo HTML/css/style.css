@@ -1,0 +1,39 @@
+:root {
+  --fundo: #f6f7f9; --card: #ffffff; --texto: #1d2330; --suave: #6b7280;
+  --primaria: #2f6fed; --perigo: #d64545; --borda: #e2e5ea;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--texto); background: var(--fundo);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: var(--texto); color: #fff; }
+.navbar nav { display: flex; gap: 16px; }
+.navbar a { color: #c8d0dc; text-decoration: none; }
+.navbar a.active { color: #fff; font-weight: 600; border-bottom: 2px solid var(--primaria); }
+.logo { font-weight: 700; }
+.container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+.topo { display: flex; justify-content: space-between; align-items: center; }
+button, .botao { background: var(--primaria); color: #fff; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
+button:disabled { opacity: .6; cursor: wait; }
+.secundario { background: #e8ecf3; color: var(--texto); }
+.perigo { background: var(--perigo); }
+input, select, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--borda); border-radius: 6px; font: inherit; margin-top: 4px; }
+.busca { display: flex; gap: 8px; margin: 12px 0 20px; }
+.busca input { margin: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--borda); }
+th { background: #eef1f6; font-size: 13px; color: var(--suave); }
+.acoes { display: flex; gap: 8px; align-items: center; }
+.formulario { display: grid; gap: 14px; background: var(--card); padding: 20px; border-radius: 8px; max-width: 560px; }
+.formulario label { font-size: 14px; color: var(--suave); }
+.linha { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.erro { background: #fdecec; color: var(--perigo); padding: 10px 12px; border-radius: 6px; }
+.info { color: var(--suave); }
+.detalhe dl { display: grid; grid-template-columns: 120px 1fr; gap: 8px; background: var(--card); padding: 16px; border-radius: 8px; }
+.detalhe dt { color: var(--suave); }
+.detalhe dd { margin: 0; }
+
+/* ---- Extras da versão HTML puro ---- */
+.navbar a:hover { color: #fff; }
+a { color: var(--primaria); }
+.escondido { display: none !important; }

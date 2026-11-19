@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produto · Aula 11</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <span class="logo">📦 Loja da Aula 11</span>
+    <nav>
+      <a href="index.html">Produtos</a>
+      <a href="formulario.html" id="link-novo">Novo produto</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <p class="info escondido" id="carregando">Carregando produto...</p>
+
+    <section class="escondido" id="secao-form">
+      <h1 id="titulo">Novo produto</h1>
+
+      <p class="erro escondido" id="erro"></p>
+
+      <form class="formulario" id="form-produto">
+        <label>
+          Nome *
+          <input name="nome" />
+        </label>
+
+        <div class="linha">
+          <label>
+            Preço (R$) *
+            <input name="preco" type="number" step="0.01" min="0" />
+          </label>
+          <label>
+            Estoque *
+            <input name="estoque" type="number" min="0" />
+          </label>
+        </div>
+
+        <label>
+          Categoria
+          <select name="categoria">
+            <option value="">Selecione...</option>
+            <option>Periféricos</option>
+            <option>Monitores</option>
+            <option>Hardware</option>
+            <option>Acessórios</option>
+          </select>
+        </label>
+
+        <label>
+          Descrição
+          <textarea name="descricao" rows="3"></textarea>
+        </label>
+
+        <div class="acoes">
+          <button type="submit" id="btn-salvar">Cadastrar</button>
+          <a href="index.html" class="botao secundario">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/formulario.js"></script>
+</body>
+</html>
