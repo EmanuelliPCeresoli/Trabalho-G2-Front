@@ -1,8 +1,15 @@
 :root {
-  --fundo: #f6f7f9; --card: #ffffff; --texto: #1d2330; --suave: #6b7280;
-  --primaria: #2f6fed; --perigo: #d64545; --borda: #e2e5ea;
+  --fundo: #f7f7f7;
+  --card: #ffffff;
+  --texto: #171717;
+  --suave: #737373;
+  --primaria: #262626;
+  --perigo: #b91c1c;
+  --borda: #e5e5e5;
+
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: var(--texto); background: var(--fundo);
+  color: var(--texto);
+  background: var(--fundo);
 }
 * { box-sizing: border-box; }
 body { margin: 0; }
@@ -21,9 +28,32 @@ input, select, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(
 .busca { display: flex; gap: 8px; margin: 12px 0 20px; }
 .busca input { margin: 0; }
 table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; }
-th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--borda); }
-th { background: #eef1f6; font-size: 13px; color: var(--suave); }
-.acoes { display: flex; gap: 8px; align-items: center; }
+th, td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--borda);
+}
+th {
+  background: #f0f0f0;
+  font-size: 13px;
+  color: #404040;
+  font-weight: 600;
+}
+.acoes {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+}
+td.acoes {
+  display: table-cell;
+  white-space: nowrap;
+}
+
+td.acoes button,
+td.acoes .botao {
+  margin-right: 4px;
+}
 .formulario { display: grid; gap: 14px; background: var(--card); padding: 20px; border-radius: 8px; max-width: 560px; }
 .formulario label { font-size: 14px; color: var(--suave); }
 .linha { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -37,3 +67,32 @@ th { background: #eef1f6; font-size: 13px; color: var(--suave); }
 .navbar a:hover { color: #fff; }
 a { color: var(--primaria); }
 .escondido { display: none !important; }
+.tabela-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .topo {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .navbar {
+    padding: 14px 12px;
+  }
+
+  .tabela-container table {
+    width: 850px;
+    min-width: 850px;
+  }
+
+  th, td {
+    white-space: nowrap;
+  }
+}

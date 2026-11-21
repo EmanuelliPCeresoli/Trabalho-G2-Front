@@ -1,8 +1,4 @@
-// =====================================================================
-// lista.js — READ (lista) + busca + DELETE
-// =====================================================================
 
-// 1) Pegamos os elementos da tela uma vez só
 const formBusca = document.getElementById('form-busca');
 const campoBusca = document.getElementById('campo-busca');
 const elCarregando = document.getElementById('carregando');
@@ -11,39 +7,38 @@ const elVazio = document.getElementById('vazio');
 const tabela = document.getElementById('tabela');
 const corpoTabela = document.getElementById('corpo-tabela');
 
-// 2) "Estado" da tela: no React era useState; aqui é uma variável comum
-let produtos = [];
+let pontos = [];
+let pontosFiltrados = [];
 
-// 3) Desenha a tabela a partir do array produtos
-//    (no React a tela se atualizava sozinha; aqui chamamos render() na mão)
+// Mostra os pontos na tabela
 function render() {
   corpoTabela.innerHTML = '';
 
-  produtos.forEach((p) => {
+  pontosFiltrados.forEach((p) => {
     const tr = document.createElement('tr');
-
-    // Criamos as células com textContent (e não innerHTML) para que um
-    // nome como "<script>" apareça como texto e não vire HTML.
-    const tdId = document.createElement('td');
-    tdId.textContent = p.id;
 
     const tdNome = document.createElement('td');
     const link = document.createElement('a');
-    link.href = `produto.html?id=${p.id}`;
-    link.textContent = p.nome;
+    link.href = `ponto.html?id=${p.id}`;
+    link.textContent = p.name;
     tdNome.appendChild(link);
 
-    const tdCategoria = document.createElement('td');
-    tdCategoria.textContent = p.categoria || '—';
+    const tdDescricao = document.createElement('td');
+    tdDescricao.textContent = p.description || '—';
 
-    const tdPreco = document.createElement('td');
-    tdPreco.textContent = formatarPreco(p.preco);
+    const tdLatitude = document.createElement('td');
+    tdLatitude.textContent = p.latitude;
 
-    const tdEstoque = document.createElement('td');
-    tdEstoque.textContent = p.estoque;
+    const tdLongitude = document.createElement('td');
+    tdLongitude.textContent = p.longitude;
 
     const tdAcoes = document.createElement('td');
     tdAcoes.className = 'acoes';
+
+    const btnVer = document.createElement('a');
+    btnVer.href = `ponto.html?id=${p.id}`;
+    btnVer.className = 'botao secundario';
+    btnVer.textContent = 'Ver';
 
     const btnEditar = document.createElement('a');
     btnEditar.href = `formulario.html?id=${p.id}`;
@@ -53,54 +48,65 @@ function render() {
     const btnExcluir = document.createElement('button');
     btnExcluir.className = 'perigo';
     btnExcluir.textContent = 'Excluir';
-    btnExcluir.addEventListener('click', () => handleExcluir(p.id, p.nome));
+    btnExcluir.addEventListener('click', () => handleExcluir(p.id, p.name));
 
-    tdAcoes.append(btnEditar, btnExcluir);
-    tr.append(tdId, tdNome, tdCategoria, tdPreco, tdEstoque, tdAcoes);
+    tdAcoes.append(btnVer, btnEditar, btnExcluir);
+    tr.append(tdNome, tdDescricao, tdLatitude, tdLongitude, tdAcoes);
     corpoTabela.appendChild(tr);
   });
 
-  // Renderização condicional: tabela só aparece se tiver produto
-  mostrar(tabela, produtos.length > 0);
-  mostrar(elVazio, produtos.length === 0);
+  mostrar(tabela, pontosFiltrados.length > 0);
+  mostrar(elVazio, pontosFiltrados.length === 0);
 }
 
-// 4) Busca os dados na API
-async function carregar(termo = '') {
+// Filtra os pontos pelo nome
+function filtrarPontos() {
+  const termo = campoBusca.value.toLowerCase();
+
+  pontosFiltrados = pontos.filter((p) =>
+    p.name.toLowerCase().includes(termo)
+  );
+
+  render();
+}
+
+// Busca os pontos na API
+async function carregar() {
   try {
     mostrar(elCarregando, true);
     mostrar(elErro, false);
     mostrar(elVazio, false);
     mostrar(tabela, false);
 
-    produtos = await listarProdutos(termo);
-    render();
+    pontos = await listarPontos();
+    filtrarPontos();
   } catch (e) {
-    elErro.textContent = 'Não foi possível carregar os produtos. A API está rodando? (' + e.message + ')';
+    elErro.textContent = 'Não foi possível carregar os pontos. (' + e.message + ')';
     mostrar(elErro, true);
   } finally {
     mostrar(elCarregando, false);
   }
 }
 
-// 5) DELETE
+// Exclui um ponto
 async function handleExcluir(id, nome) {
   if (!confirm(`Excluir "${nome}"?`)) return;
+
   try {
-    await excluirProduto(id);
-    // Atualiza o array sem buscar tudo da API de novo, e redesenha
-    produtos = produtos.filter((p) => p.id !== id);
-    render();
+    await excluirPonto(id);
+
+    pontos = pontos.filter((p) => p.id !== id);
+    filtrarPontos();
   } catch (e) {
     alert('Erro ao excluir: ' + e.message);
   }
 }
 
-// 6) Busca por nome
+// Pesquisa pelo nome
 formBusca.addEventListener('submit', (e) => {
-  e.preventDefault(); // impede o navegador de recarregar a página
-  carregar(campoBusca.value);
+  e.preventDefault();
+  filtrarPontos();
 });
 
-// 7) Equivalente ao useEffect(..., []): roda uma vez quando a página abre
+// Carrega os pontos quando a página abre
 carregar();

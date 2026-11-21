@@ -1,60 +1,53 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Produto · Aula 11</title>
+  <title>Ponto Geográfico</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="navbar">
-    <span class="logo">📦 Loja da Aula 11</span>
+    <span class="logo">Pontos Geográficos</span>
     <nav>
-      <a href="index.html">Produtos</a>
-      <a href="formulario.html" id="link-novo">Novo produto</a>
+      <a href="index.html">Pontos</a>
+      <a href="formulario.html" id="link-novo">Novo ponto</a>
     </nav>
   </header>
 
   <main class="container">
-    <p class="info escondido" id="carregando">Carregando produto...</p>
+    <p class="info escondido" id="carregando">Carregando ponto...</p>
 
     <section class="escondido" id="secao-form">
-      <h1 id="titulo">Novo produto</h1>
+      <h1 id="titulo">Novo ponto</h1>
 
       <p class="erro escondido" id="erro"></p>
 
-      <form class="formulario" id="form-produto">
+      <form class="formulario" id="form-ponto">
         <label>
           Nome *
-          <input name="nome" />
-        </label>
-
-        <div class="linha">
-          <label>
-            Preço (R$) *
-            <input name="preco" type="number" step="0.01" min="0" />
-          </label>
-          <label>
-            Estoque *
-            <input name="estoque" type="number" min="0" />
-          </label>
-        </div>
-
-        <label>
-          Categoria
-          <select name="categoria">
-            <option value="">Selecione...</option>
-            <option>Periféricos</option>
-            <option>Monitores</option>
-            <option>Hardware</option>
-            <option>Acessórios</option>
-          </select>
+          <input name="name" maxlength="100" required />
         </label>
 
         <label>
           Descrição
-          <textarea name="descricao" rows="3"></textarea>
+          <textarea name="description" rows="3" maxlength="255"></textarea>
         </label>
+
+        <div class="linha">
+          <label>
+            Latitude *
+            <input name="latitude" type="number"
+                   step="any" min="-90" max="90" required />
+          </label>
+
+          <label>
+            Longitude *
+            <input name="longitude" type="number"
+                   step="any" min="-180" max="180" required />
+          </label>
+        </div>
 
         <div class="acoes">
           <button type="submit" id="btn-salvar">Cadastrar</button>
