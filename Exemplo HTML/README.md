@@ -90,3 +90,25 @@ Métodos pendentes:
 O Front-End está integrado à API GeoPoint para listagem, consulta e cadastro de pontos geográficos.
 
 As funcionalidades de edição e exclusão serão testadas após a implementação dos respectivos métodos no backend.
+
+## Capturas de tela
+
+### Listagem de pontos geográficos
+
+![Listagem de pontos](prints/Listagem.png)
+
+### Filtro de pontos geográficos
+
+![Filtro de pontos](prints/Filtro.png)
+
+### Cadastro de ponto geográfico
+
+![Cadastro de ponto](prints/Cadastro.png)
+
+### Detalhes do ponto geográfico
+
+![Detalhes do ponto](prints/Detalhes.png)
+
+### Edição de ponto geográfico
+
+![Edição de ponto](prints/Edicao.png)
