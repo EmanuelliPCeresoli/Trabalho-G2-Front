@@ -54,10 +54,10 @@ async function iniciar() {
     preencherFormulario(ponto);
   } catch (e) {
     mostrarErro(e.message);
-  } finally {
-    mostrar(elCarregando, false);
-    mostrar(secaoForm, true);
-  }
+  }finally {
+  mostrar(elCarregando, false);
+  mostrar(secaoForm, true);
+}
 }
 
 // Cadastrar ou editar um ponto

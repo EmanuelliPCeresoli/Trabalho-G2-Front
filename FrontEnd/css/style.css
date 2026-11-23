@@ -3,7 +3,7 @@
   --card: #ffffff;
   --texto: #171717;
   --suave: #737373;
-  --primaria: #262626;
+  --primaria: #000000;
   --perigo: #b91c1c;
   --borda: #e5e5e5;
 
@@ -16,13 +16,20 @@ body { margin: 0; }
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: var(--texto); color: #fff; }
 .navbar nav { display: flex; gap: 16px; }
 .navbar a { color: #c8d0dc; text-decoration: none; }
-.navbar a.active { color: #fff; font-weight: 600; border-bottom: 2px solid var(--primaria); }
+.navbar a.active {
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid #fff;
+}
 .logo { font-weight: 700; }
 .container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
 .topo { display: flex; justify-content: space-between; align-items: center; }
 button, .botao { background: var(--primaria); color: #fff; border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
 button:disabled { opacity: .6; cursor: wait; }
-.secundario { background: #e8ecf3; color: var(--texto); }
+.secundario {
+  background: #e5e5e5;
+  color: var(--texto);
+}
 .perigo { background: var(--perigo); }
 input, select, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--borda); border-radius: 6px; font: inherit; margin-top: 4px; }
 .busca { display: flex; gap: 8px; margin: 12px 0 20px; }
